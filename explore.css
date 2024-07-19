@@ -1,0 +1,117 @@
+@import url(https://fonts.googleapis.com/css?family=Anton);
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:200,900');
+
+
+* {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    background-color: #f0f0f0;
+}
+
+#main {
+    position: relative;
+    overflow: hidden;
+    background-color: #646b7c;
+}
+
+@font-face {
+    font-family: a;
+    src: url(./jost-variable.ttf);
+}
+
+@font-face {
+    font-family: b;
+    src: url(./KFOlCnqEu92Fr1MmEU9fBBc4\ \(1\).ttf);
+}
+
+@font-face {
+    font-family: c;
+    src: url(./KFOmCnqEu92Fr1Mu4mxK\ \(1\).ttf);
+}
+
+#page1 {
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+
+
+
+
+
+
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: fixed;
+    bottom: 4px;
+    left: 15px;
+    background-color: rgba(0, 0, 0, 0);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.control-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.control {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #ffffff;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.control.space-bar {
+    width: 90px;
+    position: relative;
+    left: 15px;
+}
+#wadjust{
+    position: relative;
+    left: 40px;
+    background-color: rgb(2, 2, 55);
+}
+#acolor{
+    background-color: rgb(2, 2, 55);
+    font-weight: 800;
+}
+#scolor{
+    background-color: rgb(2, 2, 55);
+    font-weight: 800;
+}
+#dcolor{
+    background-color: rgb(2, 2, 55);
+    font-weight: 800;
+}
+#spacecolor{
+    background-color: rgb(2, 2, 55);
+    font-weight: 800;
+}
+
+

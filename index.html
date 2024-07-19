@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css"
+    />
+  </head>
+
+  <body onload="webloaded()">
+    <!-- preloader  -->
+    <div id="loading">
+      <div class="lds-roller">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <!-- preloader  -->
+
+    <div id="main">
+      <div data-scroll data-scroll-speed="-5" id="page1">
+        <nav>
+          <div id="left-nav">
+            <ul class="fly-in-text hidden">
+              <li>R</li>
+              <li>E</li>
+              <li>A</li>
+              <li>L</li>
+              <li>V</li>
+              <li>U</li>
+              <li>E</li>
+            </ul>
+          </div>
+          <div id="right-nav">
+            <button>Explore Properties</button>
+
+            <button><i class="ri-search-2-line"></i></button>
+            <button><i class="ri-menu-fill"></i></button>
+          </div>
+        </nav>
+        <div class="bottom-page1">
+          <h1>
+            Discover Your <br />
+            Dream Property
+          </h1>
+          <div class="bottom-page1-inner">
+            <h4>
+              Find your perfect home or investment opportunity <br />
+              with our real-time property availability platform.
+            </h4>
+            <button>Get Started</button>
+          </div>
+        </div>
+        <video
+          src="https://thisismagma.com/wp-content/themes/magma/assets/home/hero/1.mp4?2"
+          autoplay
+          loop
+          muted
+        ></video>
+      </div>
+      <div id="page2">
+        <h2>BRINGING HOMES TO YOUR FINGERTIPS</h2>
+        <h1>
+          RealVue offers an intuitive platform where users can effortlessly
+          explore real-time property listings, access detailed property
+          information, and receive instant updates on availability.
+        </h1>
+      </div>
+      <div id="page3">
+        <canvas></canvas>
+      </div>
+      <div id="page4">
+        <h3 style="text-transform: uppercase">
+          Step Into Your Future: Interactive Demo House Experience
+        </h3>
+        <h1>
+          Discover your dream home like never before with our interactive demo
+          house feature. Control your character, explore every room, and
+          experience the future of real estate searching. Click 'Unlock the
+          Door' to begin your adventure!
+        </h1>
+        <button class="truck-button" style="left: 16%; margin-top: 50px">
+          <span class="default">Unlock the Door</span>
+          <span class="success">
+            Unlocked
+            <svg viewbox="0 0 12 10">
+              <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
+            </svg>
+          </span>
+          <div class="truck">
+            <div class="wheel"></div>
+            <div class="back"></div>
+            <div class="front"></div>
+            <div class="box"></div>
+          </div>
+        </button>
+      </div>
+
+      <div id="page5">
+        <canvas></canvas>
+      </div>
+
+      <!-- <div class='container'>
+            <div class='item'>
+                <div class='layer shadow'></div>
+                <div class='layer _1'></div>
+                <div class='layer _2'></div>
+                <div class='layer _3'><img style="object-fit: cover; height: 100%; width: 100%;"
+                        src="data:image/jpeg;base64,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"
+                        alt=""></div>
+            </div>
+            <div class='item'>
+                <div class='layer shadow'></div>
+                <div class='layer _1'></div>
+                <div class='layer _2'></div>
+                <div class='layer _3'> <a href=""><video style="object-fit: cover; height: 100%; width: 100%; "
+                            src="aryan.mp4" autoplay muted loop></video></a></div>
+            </div>
+            <div class='item'>
+                <div class='layer shadow'></div>
+                <div class='layer _1'></div>
+                <div class='layer _2'></div>
+                <div class='layer _3'><video style="object-fit: cover; height: 100%; width: 100%; " src="aryan.mp4"
+                        autoplay muted loop></video></div>
+            </div>
+            <div class='item'>
+                <div class='layer shadow'></div>
+                <div class='layer _1'></div>
+                <div class='layer _2'></div>
+                <div class='layer _3'></div>
+            </div>
+            <div class='item'>
+                <div class='layer shadow'></div>
+                <div class='layer _1'></div>
+                <div class='layer _2'></div>
+                <div class='layer _3'></div>
+            </div>
+            <div class='item'>
+                <div class='layer shadow'></div>
+                <div class='layer _1'></div>
+                <div class='layer _2'></div>
+                <div class='layer _3'></div>
+            </div>
+            <div class='item'>
+                <div class='layer shadow'></div>
+                <div class='layer _1'></div>
+                <div class='layer _2'></div>
+                <div class='layer _3'></div>
+            </div>
+            <div class='item'>
+                <div class='layer shadow'></div>
+                <div class='layer _1'></div>
+                <div class='layer _2'></div>
+                <div class='layer _3'></div>
+            </div>
+            <div class='item'>
+                <div class='layer shadow'></div>
+                <div class='layer _1'></div>
+                <div class='layer _2'></div>
+                <div class='layer _3'></div>
+            </div>
+            <div class='item'>
+                <div class='layer shadow'></div>
+                <div class='layer _1'></div>
+                <div class='layer _2'></div>
+                <div class='layer _3'></div>
+            </div>
+            <div class='item'>
+                <div class='layer shadow'></div>
+                <div class='layer _1'></div>
+                <div class='layer _2'></div>
+                <div class='layer _3'></div>
+            </div>
+
+            <div class='item'>
+                <div class='layer shadow'></div>
+                <div class='layer _1'></div>
+                <div class='layer _2'></div>
+                <div class='layer _3'></div>
+            </div>
+            <div class='item'>
+                <div class='layer shadow'></div>
+                <div class='layer _1'></div>
+                <div class='layer _2'></div>
+                <div class='layer _3'></div>
+            </div>
+            <div class='item'>
+                <div class='layer shadow'></div>
+                <div class='layer _1'></div>
+                <div class='layer _2'></div>
+                <div class='layer _3'></div>
+            </div>
+            <div class='item'>
+                <div class='layer shadow'></div>
+                <div class='layer _1'></div>
+                <div class='layer _2'></div>
+                <div class='layer _3'></div>
+            </div>
+            <div class='item'>
+                <div class='layer shadow'></div>
+                <div class='layer _1'></div>
+                <div class='layer _2'></div>
+                <div class='layer _3'></div>
+            </div>
+
+
+
+
+        </div> -->
+
+      <div id="page6">
+        <h3 style="text-transform: uppercase">
+          Enhance Your RealVue Experience
+        </h3>
+        <h1>
+          RealVue's cutting-edge features elevate your property's value by
+          streamlining operations, optimizing energy efficiency, facilitating
+          seamless transactions, and enriching your property's marketability.
+          Experience the power of RealVue in maximizing the potential of your
+          real estate investments.
+        </h1>
+        <button class="btn-challenge" onclick="window.location.href='#'">
+          <span>Explore</span><small>Nearby Real Estate</small>
+          <div class="hover-area">
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="hover-col"></div>
+            <div class="icon-home">
+              <div class="roof roof-1"></div>
+              <div class="roof roof-2"></div>
+              <div class="roof-design roof-design-1"></div>
+              <div class="roof-design roof-design-2"></div>
+              <div class="roof-side roof-side-1"></div>
+              <div class="roof-side roof-side-2"></div>
+              <div class="roof-wall roof-wall-1"></div>
+              <div class="roof-wall roof-wall-2"></div>
+              <div class="wall wall-1"></div>
+              <div class="wall wall-2"></div>
+              <div class="wall wall-3"></div>
+              <div class="wall wall-4"></div>
+              <div class="door"></div>
+              <div class="floor"></div>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <div id="page7">
+        <div class="page7-cir">
+          <div class="page7-cir-inner"></div>
+        </div>
+        <canvas></canvas>
+      </div>
+      <div id="page8">
+        <div class="page8-bottom">
+          <h1>REALVUE</h1>
+
+          <button>LEARN MORE</button>
+        </div>
+        <video
+          src="https://thisismagma.com/wp-content/themes/magma/assets/home/glass/1.webm?2"
+          autoplay
+          loop
+          muted
+        ></video>
+      </div>
+      <div id="page9">
+        <div class="left9">
+          <h1>
+            What is <br />
+            REALVUE?
+          </h1>
+        </div>
+        <div class="right9">
+          <div class="right9-center"></div>
+        </div>
+      </div>
+      <div id="page10">
+        <div class="right10">
+          <div class="right10-inner">
+            <h1>Your Ultimate Real Estate Solution</h1>
+            <p>
+              RealVue is your go-to destination for all things real estate. From
+              browsing properties to virtual tours, we offer a seamless
+              experience to help you find your dream home quickly and easily.
+            </p>
+          </div>
+          <div class="right10-inner">
+            <h1>Your Personal Real Estate Companion</h1>
+            <p>
+              RealVue is more than just a real estate website—it's your personal
+              companion in the search for your perfect property. With intuitive
+              features and comprehensive listings, we make finding your next
+              home a breeze.
+            </p>
+          </div>
+          <div class="right10-inner">
+            <h1>Your Trusted Real Estate Platform</h1>
+            <p>
+              RealVue is the trusted platform where homebuyers and sellers come
+              together. With user-friendly tools and expert guidance, we empower
+              you to navigate the real estate market with confidence and
+              clarity.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div id="page11">
+        <h1>Recent Blog</h1>
+        <div class="page11-inner">
+          <div class="left11">
+            <a
+              href="https://www.investkraft.com/blog/tips-for-first-time-home-buyers"
+              ><img
+                src="https://thisismagma.com/wp-content/uploads/2023/05/thisismagma.com-magma-a-la-3eme-edition-du-tech-talk-de-cbre-france-1684942208038.jpeg"
+                alt=""
+            /></a>
+          </div>
+          <div class="right11">
+            <h4>MAY 30,2023</h4>
+            <a
+              href="https://www.investkraft.com/blog/tips-for-first-time-home-buyers"
+            >
+              <h1 style="text-transform: uppercase">
+                10 Tips for First-Time Homebuyers
+              </h1>
+            </a>
+          </div>
+        </div>
+        <div class="page11-inner">
+          <div class="left11">
+            <a
+              href="https://www.hgtv.com/lifestyle/real-estate/the-ultimate-staging-guide-checklist"
+              ><img
+                src="https://thisismagma.com/wp-content/uploads/2023/05/thisismagma.com-workshop-blockchain-et-actif-digitaux-sba-16-min-scaled.jpg"
+                alt=""
+            /></a>
+          </div>
+          <div class="right11">
+            <h4>MAY 30,2023</h4>
+            <a
+              href="https://www.hgtv.com/lifestyle/real-estate/the-ultimate-staging-guide-checklist"
+            >
+              <h1 style="text-transform: uppercase">
+                Ultimate Guide to Home Staging
+              </h1>
+            </a>
+          </div>
+        </div>
+        <div class="page11-inner">
+          <div class="left11">
+            <a
+              href="https://newmurabba.com/en/explore-new-murabba/the-downtown-of-tomorrow/?gad_source=1&gclid=Cj0KCQjwhtWvBhD9ARIsAOP0GohENsMZ7I5IvNNhFvTq9XZdwdpU_P_WJZ-D3omgtZOaOQExb8QGRK4aAliZEALw_wcB&gclsrc=aw.ds"
+              ><img
+                src="https://thisismagma.com/wp-content/uploads/2023/03/magma.wp2.cubdev.com-exploring-the-potential-of-real-estate-tokenization-digital-twins-magma.png"
+                alt=""
+            /></a>
+          </div>
+          <div class="right11">
+            <h4>MAY 30,2023</h4>
+            <a
+              href="https://newmurabba.com/en/explore-new-murabba/the-downtown-of-tomorrow/?gad_source=1&gclid=Cj0KCQjwhtWvBhD9ARIsAOP0GohENsMZ7I5IvNNhFvTq9XZdwdpU_P_WJZ-D3omgtZOaOQExb8QGRK4aAliZEALw_wcB&gclsrc=aw.ds"
+            >
+              <h1 style="text-transform: uppercase">
+                Green Living: Eco-Friendly Home Ideas
+              </h1>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div id="page12">
+        <div
+          class="page12-inner"
+          style="left: 330px; top: 1px; color: rgba(149, 5, 5, 0)"
+        >
+          <h1>
+            Featured In the and the we are the Thrilled to have been featured in
+            <br />several prominent media <br />
+            outlets and leading their deve
+          </h1>
+          <!-- <p>Thrilled to have been featured in <br>several prominent media <br> outlets and leading profes <br>
+                    sionals
+                    across the <br>world’s best <br> real estate and we <br>b3 institutions.
+                    Thrilled to have been featured in <br>several prominent media <br> outlets and leading profes <br>
+                    sionals
+                    across the <br>world’s best
+                    
+                </p> -->
+        </div>
+        <div class="contact-img" style="margin-left: 200px"></div>
+      </div>
+      <div id="page13">
+        <h1>
+          Become an
+          <br />
+          early adopter
+        </h1>
+        <button style="text-transform: uppercase">Tour Now</button>
+      </div>
+      <div id="page14">
+        <div class="page14-inner">
+          <h1>Twitter</h1>
+          <i class="ri-arrow-right-up-line"></i>
+          <div class="center14"></div>
+        </div>
+        <div class="page14-inner">
+          <h1>LinkedIn</h1>
+          <i class="ri-arrow-right-up-line"></i>
+          <div class="center14"></div>
+        </div>
+        <div class="page14-inner">
+          <h1>Instagram</h1>
+          <i class="ri-arrow-right-up-line"></i>
+          <div class="center14"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/gsap.min.js"
+      integrity="sha512-qF6akR/fsZAB4Co1QDDnUXWnaQseLGXoniuSuSlPQK6+aWhlMZcHzkasCSlnWoe+TJuudlka1/IQ01Dnhgq95g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.1/ScrollTrigger.min.js"
+      integrity="sha512-IHDCHrefnBT3vOCsvdkMvJF/MCPz/nBauQLzJkupa4Gn4tYg5a6VGyzIrjo6QAUy3We5HFOZUlkUpP0dkgE60A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+
+    <!-- logo design start  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      $(function () {
+        setTimeout(function () {
+          $(".fly-in-text").removeClass("hidden");
+        }, 500);
+      })();
+    </script>
+    <!-- logo design end  -->
+
+    <script>
+      window.embeddedChatbotConfig = {
+        chatbotId: "apMwSGEH6jCqPFmcNYR9N",
+        domain: "www.chatbase.co",
+      };
+    </script>
+    <script
+      src="https://www.chatbase.co/embed.min.js"
+      chatbotId="apMwSGEH6jCqPFmcNYR9N"
+      domain="www.chatbase.co"
+      defer
+    ></script>
+    <script src="script.js"></script>
+
+    <script>
+      var preloader = document.getElementById("loading");
+      function webloaded() {
+        preloader.style.display = "none";
+      }
+    </script>
+  </body>
+</html>
